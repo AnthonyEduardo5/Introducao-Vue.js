@@ -36,6 +36,12 @@
                       return this.n1 * this.n2; //contexto léxico diferente, necessita de outra forma para trabalhar com dados de DATA{}
                     },
                     dividir() { //forma enxuta de definir os pares de chave/valor
+                        let f = () => {
+                            console.log('*******',this)
+                            return 'teste';
+                        };
+                        console.log(f())
+                        
                         return this.n1 / this.n2;
                     }
                 }
