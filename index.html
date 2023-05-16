@@ -41,33 +41,48 @@
 </head>
 <body>
     <div id="app">
-        <div class="borda div-principal" :class="cor">
-            Cor: {{ cor }}
-            <br>
-            Posição X do Mouse: {{ posicaoX }}
-            Posição Y do Mouse: {{ posicaoY }}
-        </div>
+        <a href="https://gmonline.bullean.com.br" 
+            target="_blank"
+            @click.prevent="previnirComportamentoPadrao()"
+        >
+        link
+        </a>
+        <br>
+        Mensagem: {{ msg }}
         <hr>
-        <div @click="mudarCor('verde')" class="borda div-comum"></div>
-        <div class="borda div-comum" @mouseover="mudarCor('azul')" @mouseout="mudarCor('vermelho')"></div>
-        <div class="borda div-comum" @mousemove="coordenadas($event)"></div>
+        <button @click.once="executarUmaVez()">Botão</button>
+        <p>Clique: {{ cliques }}</p>
+        <hr>
+        <form @submit.prevent.once="previnirUmaVez()">
+            <button type="submit">Enviar</button>
+        </form>
+        <p> Formulário: {{ formulario }}</p>
+        <hr>
+        <input type="text" @keyup.Shift.Enter="capturandoTeclas($event)">
+        <p>Teclas: {{teclas}}</p>
     </div>
 
     <script>
         const vm = new  Vue({
                 el: '#app',
                 data: {
-                    cor: '',
-                    posicaoX: 0,
-                    posicaoY: 0,
+                    msg: '',
+                    cliques: 0,
+                    formulario: '',
+                    teclas: ''
                 },
                 methods: {
-                    mudarCor(cor) {
-                        this.cor = cor;
+                    previnirComportamentoPadrao() {
+                        this.msg = 'Comportamento Padrão Ativado'
                     },
-                    coordenadas(e) {
-                        this.posicaoX = e.clientX
-                        this.posicaoY = e.clientY
+                    executarUmaVez() {
+                        this.cliques++
+                    },
+                    previnirUmaVez() {
+                        this.formulario =  'previnindo o comportamento padroa'
+                    },
+                    capturandoTeclas(event) {
+                        this.teclas = 'Evento disparado'
                     }
                 }
         }); //vm = ViewModel
