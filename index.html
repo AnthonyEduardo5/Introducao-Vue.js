@@ -6,45 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./vue.js"></script>
     <title>Document</title>
+    <style>
+        .verde {
+            color: green;
+        }
+        
+        .negrito {
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
-        {{ somar() }}
-        <br>
-        {{ subtrair() }}
-        <br>
-        {{ multiplicar() }}
-        <br>
-        {{ dividir() }}
+        <a :href="site">Site</a>
+        <p class="negrito" :class="cor">Entendendo a diretiva v-bind</p>
+        <input type="text" :placeholder="instrucaoDePreenchimento" :value="valor">
+        <input type="checkbox" :checked="check">
     </div>
 
     <script>
         const vm = new  Vue({
                 el: '#app',
                 data: {
-                    n1: 10,
-                    n2: 5,
+                    site: 'https://gmonline.bullean.com.br',
+                    cor: 'verde',
+                    instrucaoDePreenchimento: 'Placeholder - Diretiva v-bind',
+                    valor: 'Entendendo a diretiva v-bind',
+                    check: true,
                 },
-                methods: {
-                    somar: function somar(){ // sintaxe convencional
-                        return this.n1 + this.n2;
-                    },
-                    subtrair: function(){ //função anônima
-                        return  this.n1 -  this.n2;
-                    },
-                    multiplicar: () => { //arrow function 
-                      return this.n1 * this.n2; //contexto léxico diferente, necessita de outra forma para trabalhar com dados de DATA{}
-                    },
-                    dividir() { //forma enxuta de definir os pares de chave/valor
-                        let f = () => {
-                            console.log('*******',this)
-                            return 'teste';
-                        };
-                        console.log(f())
-                        
-                        return this.n1 / this.n2;
-                    }
-                }
+                methods: {}
         }); //vm = ViewModel
 
     </script>
