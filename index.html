@@ -41,18 +41,14 @@
 </head>
 <body>
     <div id="app">
-        <p @mouseover="exibirTextoAjuda = true" @mouseout="exibirTextoAjuda = false">Exemplo tooltip</p>
-        <div v-show="exibirTextoAjuda">
-            <h3>Título texto ajuda</h3>
-            <p>Contendo texo ajuda</p>
-        </div>
+        <div v-html="elementosHTML">Texto de <b>exemplo</b></div>
     </div>
 
     <script>
         const vm = new  Vue({
                 el: '#app',
                 data: {
-                    exibirTextoAjuda: false
+                    elementosHTML: '<p><b>Site</b></p><a href="https://gmonline.bullean.com.br">GM Online</a>'
                 },
                 methods: {
                 }
